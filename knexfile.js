@@ -12,7 +12,7 @@ module.exports= {
     production: {
         client: 'mysql',
         connection: {
-          host : 'us-cdbr-east-06.cleardb.net',//process.env.DB_HOST,
+          host : 'us-cdbr-east-06.cleardb.net',
           port : 3306,
           user : 'b41011e074cd7d',
           password : '9080853f',

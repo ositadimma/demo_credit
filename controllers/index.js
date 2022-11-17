@@ -8,7 +8,10 @@ const viewAccount= (req, res) => {
     knex('users')
     .where({id: id})
     .first()
-    .then(user=>{       
+    .then(user=>{   
+        if(!user){
+            res.status(404).send({err: 'invalid ID'})
+        } else {  
         const token= 'xxxxxx'
         res.setHeader('Authorization', 'Bearer'+token+'_'+user.id)
         knex('accounts')
@@ -24,6 +27,7 @@ const viewAccount= (req, res) => {
             );
 
         })
+    }
     })
 }
 
