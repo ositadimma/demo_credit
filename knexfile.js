@@ -12,11 +12,11 @@ module.exports= {
     production: {
         client: 'mysql',
         connection: {
-          host : process.env.DB_CLIENT,
-          port : process.env.DB_PORT,
-          user : process.env.DB_USERNAME,
-          password : process.env.DB_PASSWORD,
-          database : process.env.DB_DATABASE
+          host : 'us-cdbr-east-06.cleardb.net',
+          port : 3306,
+          user : 'b41011e074cd7d',
+          password : '9080853f',
+          database : 'heroku_4aa3f653ca21a28'
         }
     },
 }
