@@ -28,6 +28,9 @@ const deposit= (req, res) => {
         .first()
         .select()
         .then(function(account){
+          if(!account){
+            res.status(404).send({err: 'invalid ID'})
+          } else {
             let balance= +account.balance+ +amount
             knex('accounts')
             .where({user_id: id})
@@ -49,6 +52,7 @@ const deposit= (req, res) => {
                 amount: amount,
                 type: 0
             })
+           }
         })
         .then(res.status(200).send({msg: 'account updated!'}) )               
     }   
@@ -79,6 +83,9 @@ const withdraw= async (req, res) => {
         .first()
         .select()
         .then(function(account){
+            if(!account){
+                res.status(404).send({err: 'invalid ID'})
+              } else {
             let balance= +account.balance - +amount
             knex('accounts')
             .where({user_id: id})
@@ -101,7 +108,7 @@ const withdraw= async (req, res) => {
                 amount: amount,
                 type: 1
             })
-
+        }
         })
         .catch(err=>{
             res.status(102).send({err: err})
@@ -142,6 +149,9 @@ const transfer= async (req, res) => {
         .first()
         .select()
         .then(function(account_from){
+            if(!account_from){
+                res.status(404).send({err: 'invalid ID'})
+            } else {
             let balance= account_from.balance-amount
             console.log(account_from)
             knex('accounts')
@@ -191,7 +201,7 @@ const transfer= async (req, res) => {
                 })
             
             })
-
+        }
         })
         .catch(err=>{
             if(err){
